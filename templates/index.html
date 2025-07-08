@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Research Paper Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 32px 32px 24px 32px;
+            border-radius: 12px;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+        }
+
+        h2 {
+            margin-bottom: 24px;
+        }
+
+        input[type=file],
+        input[type=text],
+        button {
+            width: 100%;
+            margin: 10px 0 18px 0;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+        }
+
+        button {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .answer {
+            background: #f0f4f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 24px;
+            font-size: 1.08rem;
+        }
+
+        .answer ul {
+            padding-left: 24px;
+            margin: 0;
+        }
+
+        .answer li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .error {
+            background: #ffe0e0;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>PDF Research Paper Chatbot</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <label for="pdf">Upload PDF:</label>
+            <input type="file" name="pdf" id="pdf" required>
+            <label for="question">Your Question:</label>
+            <input type="text" name="question" id="question" required>
+            <button type="submit">Ask</button>
+        </form>
+        {% if answer %}
+        <div class="answer">
+            <strong>Answer:</strong>
+            <ul>
+                {%- for line in answer.split('\n') if line.strip() %}
+                <li>{{ line.strip() }}</li>
+                {%- endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% if error %}
+        <div class="error">
+            <strong>Error:</strong>
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

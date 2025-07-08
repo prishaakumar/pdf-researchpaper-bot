@@ -1,0 +1,7 @@
+flask
+PyMuPDF
+faiss-cpu
+requests
+tqdm
+sentence-transformers
+torch 
