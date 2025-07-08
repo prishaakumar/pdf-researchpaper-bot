@@ -124,18 +124,4 @@ pdf-research-paper-chatbot/
 - **API keys:** Never commit your real `.env` file. Use `.env.example` for sharing variable names.
 - **OpenRouter credits:** Free accounts have token limits. Lower `max_tokens` in `rag_pipeline.py` if you hit quota errors.
 
----
 
-## 💼 Resume Bullet
-
-> Built an AI-powered RAG chatbot using OpenRouter API and FAISS to enable semantic Q&A on academic PDFs; implemented document parsing, vector search, and contextual response generation using GPT-4o and HuggingFace embeddings.
-
----
-
-## 📄 License
-
-MIT License
-
----
-
-Let me know if you want a version with badges, more advanced usage, or a section for contributors!
