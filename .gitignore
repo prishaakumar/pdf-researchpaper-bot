@@ -4,5 +4,9 @@ __pycache__/
 *.pyo
 *.pyd
 .env.*
+.env.local
 .DS_Store
-uploads/ 
+uploads/
+uploads_runtime/
+venv/
+.venv/ 

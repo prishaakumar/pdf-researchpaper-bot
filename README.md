@@ -1,4 +1,4 @@
-# PDF Research Paper Chatbot with RAG (OpenRouter + HuggingFace)
+# PDF Research Paper Chatbot with RAG (OpenRouter)
 
 <p align="center">
   <a href="https://pdf-researchpaper-bot.onrender.com" target="_blank" style="text-decoration:none;">
@@ -6,29 +6,27 @@
   </a>
 </p>
 
-A modern, AI-powered chatbot that lets you upload academic PDFs and ask questions about their content. Uses Retrieval-Augmented Generation (RAG) with local HuggingFace embeddings, FAISS vector search, and OpenRouter LLMs (e.g., GPT-4o) for accurate, context-aware answers.
+A modern, AI-powered chatbot that lets you upload academic PDFs and ask questions about their content. Uses Retrieval-Augmented Generation (RAG) with keyword-based retrieval and OpenRouter LLMs for accurate, context-aware answers.
 
 ---
 
 ## 🚀 Features
 
-- **PDF Upload & Parsing:** Extracts text from uploaded PDFs using PyMuPDF.
-- **Text Chunking & Embedding:** Splits content into overlapping chunks and embeds them using HuggingFace's `all-MiniLM-L6-v2`.
-- **Vector Search:** Stores embeddings in FAISS for fast semantic retrieval.
-- **RAG Pipeline:** Retrieves top-matching chunks as context for the LLM.
-- **LLM Integration:** Uses OpenRouter API (e.g., GPT-4o) for answer generation.
-- **Modern Web UI:** Clean, responsive interface with beautiful bullet-pointed answers.
+- **PDF Upload & Parsing:** Extracts text from uploaded PDFs using PyMuPDF (in-memory, no disk writes).
+- **Text Chunking:** Splits content into overlapping chunks for efficient retrieval.
+- **Keyword Retrieval:** Finds relevant chunks using simple keyword matching (no embeddings required).
+- **RAG Pipeline:** Sends top-matching chunks as context to the LLM.
+- **OpenRouter Integration:** Uses free models (`openrouter/free`, `stepfun/step-3.5-flash:free`) with automatic fallback; supports paid models (e.g., GPT-4o-mini) if you have credits.
+- **Modern Web UI:** Clean, responsive interface with bullet-pointed answers.
 
 ---
-
 
 ## 🛠️ Tech Stack
 
 - **Backend:** Python, Flask
 - **PDF Extraction:** PyMuPDF
-- **Embeddings:** HuggingFace Sentence Transformers (`all-MiniLM-L6-v2`)
-- **Vector Store:** FAISS
-- **LLM API:** OpenRouter (e.g., GPT-4o)
+- **Retrieval:** Keyword-based (no vector DB)
+- **LLM API:** OpenRouter
 - **Frontend:** HTML/CSS
 
 ---
@@ -59,6 +57,7 @@ A modern, AI-powered chatbot that lets you upload academic PDFs and ask question
      ```
      OPENROUTER_API_KEY=your_openrouter_api_key_here
      ```
+   - Get a free API key at [OpenRouter](https://openrouter.ai/).
 
 ---
 
@@ -71,7 +70,7 @@ A modern, AI-powered chatbot that lets you upload academic PDFs and ask question
 
 2. **Open your browser and go to:**
    ```
-   http://127.0.0.1:5000/
+   http://127.0.0.1:15000/
    ```
 
 3. **Upload a PDF and ask a question!**
@@ -95,7 +94,7 @@ A modern, AI-powered chatbot that lets you upload academic PDFs and ask question
 You can also use the `/ask` endpoint programmatically:
 
 ```bash
-curl -X POST http://127.0.0.1:5000/ask \
+curl -X POST http://127.0.0.1:15000/ask \
   -F "pdf=@/path/to/your/research_paper.pdf" \
   -F "question=What problem do Transformers solve?"
 ```
@@ -109,11 +108,11 @@ pdf-research-paper-chatbot/
 ├── app.py
 ├── rag_pipeline.py
 ├── requirements.txt
+├── Procfile
 ├── .env.example
 ├── .gitignore
 ├── templates/
 │   └── index.html
-├── uploads/           # (auto-created, gitignored)
 └── README.md
 ```
 
@@ -122,6 +121,4 @@ pdf-research-paper-chatbot/
 ## 🔒 Security & Credits
 
 - **API keys:** Never commit your real `.env` file. Use `.env.example` for sharing variable names.
-- **OpenRouter credits:** Free accounts have token limits. Lower `max_tokens` in `rag_pipeline.py` if you hit quota errors.
-
-
+- **OpenRouter:** Free models work without credits. For paid models (e.g., GPT-4o-mini), add credits at [OpenRouter](https://openrouter.ai/). Lower `max_tokens` in `rag_pipeline.py` if you hit quota errors.
