@@ -1,7 +1,7 @@
 # PDF Research Paper Chatbot with RAG (OpenRouter)
 
 <p align="center">
-  <a href="https://pdf-researchpaper-bot.onrender.com" target="_blank" style="text-decoration:none;">
+  <a href="https://pdf-researchpaper-bot-1.onrender.com" target="_blank" style="text-decoration:none;">
     <img src="https://img.shields.io/badge/Live%20Demo-Click%20Here-brightgreen?style=for-the-badge" alt="Live Demo"/>
   </a>
 </p>
